@@ -9,7 +9,7 @@ class node{
 		node*next;
 		
 		node(string data){
-			data=data;
+			this->data=data;
 			next=NULL;
 		}
 };
@@ -47,23 +47,29 @@ class LL{
 			tail=newnode;
 		}
 	}
-	string searchLL(string data){
+	bool searchLL(string data){
 		node*newnode=head;
 			while(newnode!=NULL){
 			if(newnode->data==data){
-				return newnode->data;
+				cout <<"found the data in the linked list"<< endl;
+                return true;
 			}
+            newnode=newnode->next;
 		}
+        cout<< "data not found in the linked list"<< endl;
+        return false;
 	}
 	
 	void insert(string data,string pos){
 		node*temp=head;
+        node*pre;
 		node*newnode=new node(data);
 		while(temp->data!=pos){
+            pre=temp;
 			temp=temp->next;
 		}
-		temp->next=newnode;
-		newnode->next=temp->next;
+		pre->next=newnode;
+		newnode->next=temp;
 		
 		}
 	void print_LL(){
@@ -98,12 +104,10 @@ int main() {
 
     
     if (library.searchLL("Database Systems")) {
-        cout << "\"Database Systems\" found in the list." << endl;
+        cout << "Database Systems"  << endl;
     } else {
-        cout << "\"Database Systems\" not found in the list." << endl;
+        cout << "Database Systems" << endl;
     }
-
-    /
     cout << "Complete list of books:" << endl;
     library.print_LL();
 
